@@ -1,0 +1,24 @@
+stages:
+- stage: Build
+  displayName: Build
+  jobs:
+  - job: Build_Shlink_Docker_Image
+    displayName: Build Shlink docker image
+    variables:
+      - name: shlinkVersion
+        value: 2.8.0
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+      - script: |
+          docker pull shlink/shlink:$(shlinkVersion)
+        displayName: 'Pull shlink image version $(shlinkVersion)'
+
+      - script: |
+          docker save shlink/shlink:$(shlinkVersion) | gzip > $(Agent.BuildDirectory)/s/shlink.tar.gz
+        displayName: 'Create image archive'
+
+      - task: PublishPipelineArtifact@1
+        displayName: 'Publish image'
+        inputs:
+          targetPath: '$(Agent.BuildDirectory)/s/shlink.tar.gz'
