@@ -4,9 +4,6 @@ stages:
   jobs:
   - job: Build_Shlink_Docker_Image
     displayName: Build Shlink docker image
-    variables:
-      - name: shlinkVersion
-        value: 2.8.0
     pool:
       vmImage: ubuntu-latest
     steps:
