@@ -8,11 +8,11 @@ stages:
       vmImage: ubuntu-latest
     steps:
       - script: |
-          docker pull shlink/shlink:$(shlinkVersion)
+          docker pull shlinkio/shlink:$(shlinkVersion)
         displayName: 'Pull shlink image version $(shlinkVersion)'
 
       - script: |
-          docker save shlink/shlink:$(shlinkVersion) | gzip > $(Agent.BuildDirectory)/s/shlink.tar.gz
+          docker save shlinkio/shlink:$(shlinkVersion) | gzip > $(Agent.BuildDirectory)/s/shlink.tar.gz
         displayName: 'Create image archive'
 
       - task: PublishPipelineArtifact@1
