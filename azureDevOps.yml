@@ -8,15 +8,16 @@ stages:
       vmImage: ubuntu-latest
     steps:
       - script: |
-          echo "##vso[build.updatebuildnumber]shlink-$(shlinkVersion)_$(Build.BuildNumber)"
-        displayName: Rename build - shlink-$(shlinkVersion)_$(Build.BuildNumber)
+          echo "##vso[build.updatebuildnumber]$(shlinkVersion)-$(Build.BuildNumber)"
+        displayName: Rename build - $(shlinkVersion)-$(Build.BuildNumber)
 
       - script: |
           docker pull shlinkio/shlink:$(shlinkVersion)
         displayName: 'Pull shlink image version $(shlinkVersion)'
 
       - script: |
-          docker save shlinkio/shlink:$(shlinkVersion) | gzip > $(Agent.BuildDirectory)/s/shlink.tar.gz
+          docker tag shlinkio/shlink:$(shlinkVersion) shlinkio/shlink:$(shlinkVersion)-$(Build.BuildNumber)
+          docker save shlinkio/shlink:$(shlinkVersion)-$(Build.BuildNumber) | gzip > $(Agent.BuildDirectory)/s/shlink.tar.gz
         displayName: 'Create image archive'
 
       - task: PublishPipelineArtifact@1
