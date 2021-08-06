@@ -8,6 +8,10 @@ stages:
       vmImage: ubuntu-latest
     steps:
       - script: |
+          echo "##vso[build.updatebuildnumber]shlink-$(shlinkVersion)_$(Build.BuildNumber)"
+        displayName: Rename build - shlink-$(shlinkVersion)_$(Build.BuildNumber)
+
+      - script: |
           docker pull shlinkio/shlink:$(shlinkVersion)
         displayName: 'Pull shlink image version $(shlinkVersion)'
 
