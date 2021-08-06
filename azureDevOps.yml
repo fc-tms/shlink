@@ -19,3 +19,4 @@ stages:
         displayName: 'Publish image'
         inputs:
           targetPath: '$(Agent.BuildDirectory)/s/shlink.tar.gz'
+          artifactName: 'shlink'
