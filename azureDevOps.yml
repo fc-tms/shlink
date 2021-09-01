@@ -16,7 +16,7 @@ stages:
         displayName: 'Pull shlink image version $(shlinkVersion)'
 
       - script: |
-          docker tag shlinkio/shlink:$(shlinkVersion) shlinkio/shlink:$(Build.BuildNumber)
+          docker build -t shlinkio/shlink:$(Build.BuildNumber) azure
           docker save shlinkio/shlink:$(Build.BuildNumber) | gzip > $(Agent.BuildDirectory)/s/shlink.tar.gz
         displayName: 'Create image archive'
 
