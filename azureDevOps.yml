@@ -12,7 +12,8 @@ stages:
         displayName: Rename build - $(shlinkVersion)-$(Build.BuildNumber)
 
       - script: |
-          docker pull shlinkio/shlink:$(shlinkVersion)
+#          docker pull shlinkio/shlink:$(shlinkVersion)
+          docker built -t local/shlink .
         displayName: 'Pull shlink image version $(shlinkVersion)'
 
       - script: |
