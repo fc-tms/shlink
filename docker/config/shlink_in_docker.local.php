@@ -20,6 +20,7 @@ use const Shlinkio\Shlink\Core\MIN_SHORT_CODES_LENGTH;
 $helper = new class {
     private const DB_DRIVERS_MAP = [
         'mysql' => 'pdo_mysql',
+        'mysqli' => 'mysqli',
         'maria' => 'pdo_mysql',
         'postgres' => 'pdo_pgsql',
         'mssql' => 'pdo_sqlsrv',
@@ -50,6 +51,11 @@ $helper = new class {
             'host' => env('DB_HOST', $driver === 'postgres' ? env('DB_UNIX_SOCKET') : null),
             'port' => env('DB_PORT', self::DB_PORTS_MAP[$driver]),
             'unix_socket' => $isMysql ? env('DB_UNIX_SOCKET') : null,
+            'ssl_key' => env('DB_SSL_KEY'),
+            'ssl_cert' => env('DB_SSL_CERT'),
+            'ssl_ca' => env('DB_SSL_CA'),
+            'ssl_capath' => env('DB_SSL_CAPATH'),
+            'ssl_cipher' => env('DB_SSL_CIPHER'),
         ];
     }
 
