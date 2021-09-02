@@ -13,7 +13,7 @@ stages:
 
       - script: |
           #docker pull shlinkio/shlink:$(shlinkVersion)
-          docker built -t local/shlink .
+          docker build -t local/shlink .
         displayName: 'Pull shlink image version $(shlinkVersion)'
 
       - script: |
