@@ -27,6 +27,7 @@ $helper = new class {
     ];
     private const DB_PORTS_MAP = [
         'mysql' => '3306',
+        'mysqli' => '3306',
         'maria' => '3306',
         'postgres' => '5432',
         'mssql' => '1433',
