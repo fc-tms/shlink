@@ -11,11 +11,14 @@ services:
   shlink:
     build: .
     environment:
-      - "DB_DRIVER=mysql"
+      - "DB_DRIVER=mysqli"
       - "DB_USER=test"
       - "DB_PASSWORD=test"
       - "DB_NAME=test"
       - "DB_HOST=db"
       - "DB_PORT=3306"
+      - "DB_SSL_CA=/etc/ssl/certs/ca.pem"
+    volumes:
+      - "./ca.pem:/etc/ssl/certs/ca.pem"
     depends_on:
       - db
